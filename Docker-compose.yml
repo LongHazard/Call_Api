@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  call:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8995:8999"
+    depends_on:
+      - db              # Dịch vụ này phụ thuộc vào dịch vụ "db"
+  db:
+    image: postgres:12
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://192.168.14.60:5432/tesst
+      DATASOURCE_USERNAME: postgres
+      DATASOURCE_PASSWORD: 1
+    restart: always
+
